@@ -46,12 +46,14 @@ EOF
 
 generate_dockerfile() {
     cat > Dockerfile << EOF
-FROM bigtop/puppet:${OS}
+FROM nbhat/bigtoppuppet:${OS}
 ADD startup.sh /startup.sh
 ADD bigtop-puppet /bigtop-puppet
 ADD bigtop-puppet/hiera.yaml /etc/puppet/hiera.yaml
 ADD bigtop-puppet/hieradata /etc/puppet/hieradata
 ADD site.yaml.template /etc/puppet/hieradata/site.yaml.template
+RUN yum remove -y puppetlabs-release.noarch
+RUN yum install -y puppet git hostname curl sudo unzip wget tar facter
 RUN /startup.sh --bootstrap
 CMD /startup.sh --foreground
 EOF
