@@ -604,7 +604,7 @@ def genTasks = { target ->
   }
   task "$target-pkg-ind" (
           description: "Invoking a native binary packaging for $target in Docker. Usage: \$ ./gradlew " +
-                  "-POS=[centos-7|fedora-26|debian-9|ubuntu-16.04|opensuse-42.3] " +
+                  "-POS=[centos-7|fedora-26|debian-9|ubuntu-16.04|ubuntu-18.04|opensuse-42.3] " +
                   "-Pprefix=[trunk|1.2.1|1.2.0|1.1.0|...] $target-pkg-ind",
           group: PACKAGES_GROUP) doLast {
     def _prefix = project.hasProperty("prefix") ? prefix : "trunk"
